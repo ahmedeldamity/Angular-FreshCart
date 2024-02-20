@@ -1,1 +1,88 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
+
+$main-color: #0aad0a;
+$rating-color: #ffc908;
+$light-color: #f0f3f2;
+$main-transition: 0.8s;
+$font-family: "Encode Sans Expanded", sans-serif;
+$shadow: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px,
+  rgba(145, 158, 171, 0.14) 0px 4px 5px 0px,
+  rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
+
+body{
+  font-family: $font-family;
+}
+
+.text-main {
+  color: $main-color !important;
+}
+.text-main-light {
+  color: $light-color !important;
+}
+.bg-main {
+  background-color: $main-color !important;
+}
+.bg-main-light {
+  background-color: $light-color !important;
+}
+.rating-color {
+  color: $rating-color !important;
+}
+.font-sm {
+  font-size: 12px !important;
+}
+.main-btn {
+  border: unset;
+  cursor: pointer;
+  color: #fff !important;
+  background-color: $main-color !important;
+  padding: 4px 8px;
+  transition: background-color $main-transition;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #08e208 !important;
+  }
+
+  &:disabled {
+    background-color: #067a0663 !important;
+    color: #ffffff8e !important;
+    cursor: not-allowed;
+  }
+}
+
+input:focus {
+  box-shadow: 0 0 0 0.25rem rgb(10 173 10 / 39%) !important;
+  border-color: #0aad0a !important;
+}
+
+.product {
+  padding: 6px 9px;
+  border-radius: 5px;
+  overflow: hidden;
+  border: solid 1px $main-color;
+
+  &:hover {
+    box-shadow: $shadow;
+    border: solid 1.2px $main-color;
+
+    .add-btn {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+
+  .add-btn {
+    transition: transform 1s, opacity 1s, background-color 1s;
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+.active-link {
+  background-color: $main-color;
+  color: #fff !important;
+  border-radius: 5px;
+}
