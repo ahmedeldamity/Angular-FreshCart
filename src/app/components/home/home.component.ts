@@ -6,6 +6,8 @@ import { Product } from '../../core/interfaces/product';
 import { Category } from '../../core/interfaces/category';
 import { ProductService } from '../../core/services/product.service';
 import { RouterLink } from '@angular/router';
+import { CartService } from '../../core/services/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +18,8 @@ import { RouterLink } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private _ProductService:ProductService){}
+  constructor(private _ProductService:ProductService, private _CartService:CartService,
+    private _ToastrService: ToastrService){}
   productsData: Product[] = [];
   categoriesData: Category[] = [];
 
@@ -45,6 +48,19 @@ export class HomeComponent implements OnInit {
         console.log(err)
       }
     });
+  }
+
+  addToCart(productId: string | undefined){
+    if(productId)
+      this._CartService.addToCart(productId).subscribe({
+        next: (response) => {
+          this._ToastrService.success('Product Added To Cart.', 'Success', {positionClass: 'toast-bottom-right'});
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      })
+
   }
 
   categoryOptions: OwlOptions = {
