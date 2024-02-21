@@ -5,11 +5,12 @@ import { CuttextPipe } from '../../core/pipes/cuttext.pipe';
 import { Product } from '../../core/interfaces/product';
 import { Category } from '../../core/interfaces/category';
 import { ProductService } from '../../core/services/product.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, CuttextPipe, CarouselModule],
+  imports: [CommonModule, CuttextPipe, CarouselModule, RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -55,6 +56,7 @@ export class HomeComponent implements OnInit {
     navSpeed: 700,
     navText: ['', ''],
     autoplay: true,
+    autoplayTimeout: 3000,
     autoplaySpeed: 2000,
     responsive: {
       0: {
@@ -82,6 +84,7 @@ export class HomeComponent implements OnInit {
     navSpeed: 700,
     navText: ['', ''],
     autoplay: true,
+    autoplayTimeout: 3000,
     autoplaySpeed: 2000,
     items: 1,
     nav: false

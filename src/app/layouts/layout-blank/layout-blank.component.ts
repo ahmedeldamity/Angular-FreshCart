@@ -12,5 +12,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
   styleUrl: './layout-blank.component.scss'
 })
 export class LayoutBlankComponent {
-
+  goUp():void{
+    scrollTo(0,0)
+  }
 }

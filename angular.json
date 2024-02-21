@@ -14,7 +14,7 @@
           "standalone": false
         },
         "@schematics/angular:pipe": {
-          "standalone": false
+          "standalone": true
         }
       },
       "root": "",
