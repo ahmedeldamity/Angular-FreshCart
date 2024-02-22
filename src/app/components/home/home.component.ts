@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { CuttextPipe } from '../../core/pipes/cuttext.pipe';
 import { Product } from '../../core/interfaces/product';
@@ -17,9 +17,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
-
   constructor(private _ProductService:ProductService, private _CartService:CartService,
-    private _ToastrService: ToastrService){}
+    private _ToastrService: ToastrService, private _Renderer2:Renderer2){}
   productsData: Product[] = [];
   categoriesData: Category[] = [];
 
@@ -50,17 +49,22 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  addToCart(productId: string | undefined){
+  addToCart(productId: string | undefined, element:HTMLButtonElement){
     if(productId)
+    {
+      this._Renderer2.setAttribute(element, 'disabled', 'true');
       this._CartService.addToCart(productId).subscribe({
         next: (response) => {
           this._ToastrService.success('Product Added To Cart.', 'Success', {positionClass: 'toast-bottom-right'});
+          this._Renderer2.removeAttribute(element, 'disabled');
+          this._CartService.cartNumber.next(response.numOfCartItems);
         },
         error: (err) => {
-          console.log(err);
+          this._ToastrService.error('has error occured.', 'Error', {positionClass: 'toast-bottom-right'});
+          this._Renderer2.removeAttribute(element, 'disabled');
         }
       })
-
+    }
   }
 
   categoryOptions: OwlOptions = {

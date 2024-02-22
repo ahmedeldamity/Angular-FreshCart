@@ -1,1 +1,33 @@
-<p>cart works!</p>
+<section *ngIf="cartDetails;else msg" class="w-75 mx-auto rounded shadow bg-main-light p-3 mb-3">
+  <div class="d-flex justify-content-between align-items-center ">
+    <h1>Shop Cart</h1>
+    <button (click)="clearCart()" class="btn btn-outline-danger btn-sm">Clear Cart</button>
+  </div>
+  <p class="text-main">Total Price: {{cartDetails.totalCartPrice | currency: "EGP "}}</p>
+  <div class="row border-bottom py-2" *ngFor="let product of cartDetails.products">
+    <div class="col-md-1">
+      <img class="w-100" [src]="product.product.imageCover" [alt]="product.product.title">
+    </div>
+    <div class="col-md-11 d-flex justify-content-between align-items-center">
+      <div>
+        <h3 class="h6">{{product.product.title}}</h3>
+        <p class="text-main mb-0">Price: {{product.price | currency: "EGP "}}</p>
+        <button (click)="removeCartItem(product.product.id, btnRemove)"
+        class=" p-1 mt-1 text-main border-0" #btnRemove>
+        <i class="fa-solid fa-trash-can"></i> Remove</button>
+      </div>
+      <div>
+        <button #btnPlus (click)="changeCount(product.product.id, product.count - 1, btnPlus, btnMinus)" class="btn btn-danger small">-</button>
+        <span> {{product.count}} </span>
+        <button #btnMinus (click)="changeCount(product.product.id, product.count + 1, btnPlus, btnMinus)" class="btn btn-success small">+</button>
+      </div>
+    </div>
+  </div>
+  <button class="main-btn small w-100 fw-bolder mt-3">
+    Payment <img src="./assets/images/visa-1.svg" alt="">
+  </button>
+</section>
+
+<ng-template #msg>
+  <h2 class="text-center">Your Cart Is Empty...</h2>
+</ng-template>

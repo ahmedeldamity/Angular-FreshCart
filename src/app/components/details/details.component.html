@@ -19,7 +19,7 @@
           <span class="small">{{productDetails.price | currency:"EGP "}}</span>
           <p mb-0><i class="fas fa-star rating-color"></i> {{productDetails.ratingsAverage}}</p>
         </div>
-        <button class="main-btn w-100">+Add To Cart</button>
+        <button (click)="addToCart(productDetails.id, btnAdd)" #btnAdd class="main-btn w-100">+Add To Cart</button>
       </div>
     </div>
   </div>

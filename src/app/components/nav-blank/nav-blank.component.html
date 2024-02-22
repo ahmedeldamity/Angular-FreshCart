@@ -9,9 +9,6 @@
           <a class="nav-link" routerLinkActive="active-link" routerLink="/home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active-link" routerLink="/cart">Cart</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" routerLinkActive="active-link" routerLink="/products">Products</a>
         </li>
         <li class="nav-item">
@@ -22,14 +19,11 @@
         </li>
       </ul>
       <ul class="navbar-nav ms-auto mt-2 mt-lg-0 align-items-center">
-        <li class="nav-item">
-          <a class="fs-5" href="#"><i class="fab fa-instagram me-2"></i></a>
-          <a class="fs-5" href="#"><i class="fab fa-facebook me-2"></i></a>
-          <a class="fs-5" href="#"><i class="fab fa-tiktok me-2"></i></a>
-          <a class="fs-5" href="#"><i class="fab fa-twitter me-2"></i></a>
-          <a class="fs-5" href="#"><i class="fab fa-youtube me-2"></i></a>
+        <li class="nav-item position-relative">
+          <a class="nav-link p-0 me-4" routerLink="/cart"><i class="fas fa-cart-shopping fa-fade fa-2x"></i></a>
+          <span class="badge bg-info countSpan">{{cartNumber}}</span>
         </li>
-        <li class="sign nav-item ms-2">
+        <li class="sign nav-item">
           <span role="button" (click)="signOut()">SignOut</span>
         </li>
       </ul>
