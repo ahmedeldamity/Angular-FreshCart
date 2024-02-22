@@ -10,6 +10,8 @@ const routes: Routes = [
     {path:'products', loadComponent:() => import('./components/products/products.component').then((M) => M.ProductsComponent), title: 'Products'},
     {path:'categories', loadComponent:() => import('./components/categories/categories.component').then((M) => M.CategoriesComponent), title: 'Categories'},
     {path:'brands', loadComponent:() => import('./components/brands/brands.component').then((M) => M.BrandsComponent), title: 'Brands'},
+    {path:'payment/:id', loadComponent:() => import('./components/payment/payment.component').then((M) => M.PaymentComponent), title: 'Payment'},
+    {path:'allorders', loadComponent:() => import('./components/orders/orders.component').then((M) => M.OrdersComponent), title: 'All Orders'},
     {path:'productdetails/:id', loadComponent:() => import('./components/details/details.component').then((M) => M.DetailsComponent), title: 'Product Details'}
   ]},
   {path:'', loadComponent:() => import('./layouts/layout-auth/layout-auth.component').then((M) => M.LayoutAuthComponent), children: [
