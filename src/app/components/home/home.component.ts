@@ -8,11 +8,13 @@ import { ProductService } from '../../core/services/product.service';
 import { RouterLink } from '@angular/router';
 import { CartService } from '../../core/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { SearchPipe } from '../../core/pipes/search.pipe';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, CuttextPipe, CarouselModule, RouterLink],
+  imports: [CommonModule, CuttextPipe, CarouselModule, RouterLink, SearchPipe, FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -21,6 +23,7 @@ export class HomeComponent implements OnInit {
     private _ToastrService: ToastrService, private _Renderer2:Renderer2){}
   productsData: Product[] = [];
   categoriesData: Category[] = [];
+  searchValue:string = '';
 
   ngOnInit(): void {
     this.getCategories();
