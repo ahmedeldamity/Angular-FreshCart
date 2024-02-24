@@ -12,12 +12,14 @@ const routes: Routes = [
     {path:'brands', loadComponent:() => import('./components/brands/brands.component').then((M) => M.BrandsComponent), title: 'Brands'},
     {path:'payment/:id', loadComponent:() => import('./components/payment/payment.component').then((M) => M.PaymentComponent), title: 'Payment'},
     {path:'allorders', loadComponent:() => import('./components/orders/orders.component').then((M) => M.OrdersComponent), title: 'All Orders'},
+    {path:'forgetpassword', loadComponent:() => import('./components/forgetpassword/forgetpassword.component').then((M) => M.ForgetpasswordComponent), title: 'Forget Password'},
     {path:'productdetails/:id', loadComponent:() => import('./components/details/details.component').then((M) => M.DetailsComponent), title: 'Product Details'}
   ]},
   {path:'', loadComponent:() => import('./layouts/layout-auth/layout-auth.component').then((M) => M.LayoutAuthComponent), children: [
     {path:'', redirectTo: 'login', pathMatch:'full'},
     {path:'register', loadComponent:() => import('./components/register/register.component').then((M) => M.RegisterComponent), title: 'Register'},
-    {path:'login', loadComponent:() => import('./components/login/login.component').then((M) => M.LoginComponent), title: 'Login'}
+    {path:'login', loadComponent:() => import('./components/login/login.component').then((M) => M.LoginComponent), title: 'Login'},
+    {path:'forget', loadComponent:() => import('./components/forgetpassword/forgetpassword.component').then((M) => M.ForgetpasswordComponent), title: 'Forget Password'},
   ]},
   {path:'**', loadComponent:() => import('./components/notfound/notfound.component').then((M) => M.NotfoundComponent), title: 'Not Found'}
 ];

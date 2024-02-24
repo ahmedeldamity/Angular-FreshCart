@@ -17,9 +17,12 @@
       <p class="mb-0" *ngIf="loginForm.get('password')?.getError('required')">Password Is Required</p>
       <p class="mb-0" *ngIf="loginForm.get('password')?.getError('pattern')">Password At Length 6</p>
     </div>
-    <button [disabled]="loginForm.invalid" class="main-btn mt-2">
-      Login <span *ngIf="isLoading"><i class="fas fa-spin fa-spinner"></i></span>
-    </button>
+    <div class="d-flex justify-content-between align-items-center">
+      <button [disabled]="loginForm.invalid" class="main-btn mt-2">
+        Login <span *ngIf="isLoading"><i class="fas fa-spin fa-spinner"></i></span>
+      </button>
+      <a routerLink="/forget" class="link-primary">Forget Password</a>
+    </div>
   </form>
   <p *ngIf="errorMessage" class="alert alert-danger p-1 mb-0 mt-2 text-center">{{errorMessage}}</p>
 </section>
