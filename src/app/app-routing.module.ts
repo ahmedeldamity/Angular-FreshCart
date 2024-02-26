@@ -9,7 +9,7 @@ const routes: Routes = [
     {path:'cart', loadComponent:() => import('./components/cart/cart.component').then((M) => M.CartComponent), title: 'Cart'},
     {path:'products', loadComponent:() => import('./components/products/products.component').then((M) => M.ProductsComponent), title: 'Products'},
     {path:'categories', loadComponent:() => import('./components/categories/categories.component').then((M) => M.CategoriesComponent), title: 'Categories'},
-    {path:'brands', loadComponent:() => import('./components/brands/brands.component').then((M) => M.BrandsComponent), title: 'Brands'},
+    {path:'categoryDetails/:id', loadComponent:() => import('./components/category-details/category-details.component').then((M) => M.CategoryDetailsComponent), title: 'Category Details'},
     {path:'payment/:id', loadComponent:() => import('./components/payment/payment.component').then((M) => M.PaymentComponent), title: 'Payment'},
     {path:'allorders', loadComponent:() => import('./components/orders/orders.component').then((M) => M.OrdersComponent), title: 'All Orders'},
     {path:'forgetpassword', loadComponent:() => import('./components/forgetpassword/forgetpassword.component').then((M) => M.ForgetpasswordComponent), title: 'Forget Password'},

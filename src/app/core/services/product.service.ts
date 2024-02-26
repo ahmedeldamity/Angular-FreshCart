@@ -26,4 +26,8 @@ export class ProductService {
     return this._HttpClient.get(this.baseUrl + 'categories');
   }
 
+  getCategory(categoryId:string):Observable<any>{
+    return this._HttpClient.get(this.baseUrl + `categories/${categoryId}`);
+  }
+
 }

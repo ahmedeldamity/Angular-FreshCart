@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
         this.categoriesData = response.data;
       },
       error: (err) => {
-        console.log(err)
+        this._ToastrService.error('has error occured.', 'Error');
       }
     });
   }
@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
         this.productsData = response.data;
       },
       error: (err) => {
-        console.log(err)
+        this._ToastrService.error('has error occured.', 'Error');
       }
     });
   }
