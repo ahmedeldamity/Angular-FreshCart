@@ -19,6 +19,18 @@
         </li>
       </ul>
       <ul class="navbar-nav ms-auto mt-2 mt-lg-0 align-items-center">
+        <li class="nav-item position-relative">
+          <a class="nav-link p-0 text-danger me-4" routerLink="/wishlist">
+            <i class="fa-solid fa-heart fa-2x"></i>
+          </a>
+          <span class="badge bg-info countSpan">{{wishListNumber}}</span>
+        </li>
+        <li class="nav-item position-relative">
+          <a class="nav-link p-0 text-main me-4" routerLink="/cart">
+            <i class="fas fa-cart-shopping fa-fade fa-2x"></i>
+          </a>
+          <span class="badge bg-info countSpan">{{cartNumber}}</span>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fas fa-user fa-xl text-main"></i>
@@ -26,10 +38,6 @@
           <ul class="dropdown-menu">
             <li class="m-1" role="button" routerLink="/forgetpassword" routerLinkActive="active-link"><a class="dropdown-item">Forget Password</a></li>
           </ul>
-        </li>
-        <li class="nav-item position-relative">
-          <a class="nav-link p-0 text-main me-4" routerLink="/cart"><i class="fas fa-cart-shopping fa-fade fa-2x"></i></a>
-          <span class="badge bg-info countSpan">{{cartNumber}}</span>
         </li>
         <li class="sign nav-item">
           <span role="button" (click)="signOut()">SignOut</span>

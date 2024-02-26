@@ -13,7 +13,7 @@
         <h3 class="h6">{{product.product.title}}</h3>
         <p class="text-main mb-0">Price: {{product.price | currency: "EGP "}}</p>
         <button (click)="removeCartItem(product.product.id, btnRemove)"
-        class=" p-1 mt-1 text-main border-0" #btnRemove>
+        class="p-1 mt-1 text-danger border-0" #btnRemove>
         <i class="fa-solid fa-trash-can"></i> Remove</button>
       </div>
       <div>

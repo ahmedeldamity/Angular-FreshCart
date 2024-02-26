@@ -10,6 +10,7 @@ import { CartService } from '../../core/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { SearchPipe } from '../../core/pipes/search.pipe';
 import { FormsModule } from '@angular/forms';
+import { WishlistService } from '../../core/services/wishlist.service';
 
 @Component({
   selector: 'app-home',
@@ -20,13 +21,16 @@ import { FormsModule } from '@angular/forms';
 })
 export class HomeComponent implements OnInit {
   constructor(private _ProductService:ProductService, private _CartService:CartService,
-    private _ToastrService: ToastrService, private _Renderer2:Renderer2){}
+    private _ToastrService: ToastrService, private _Renderer2:Renderer2,
+    private _WishlistService:WishlistService){}
   productsData: Product[] = [];
   categoriesData: Category[] = [];
   searchValue:string = '';
+  wishListIds:string[] = []
 
   ngOnInit(): void {
     this.getCategories();
+    this.getUserWishlist();
     this.getProducts();
   }
 
@@ -58,13 +62,57 @@ export class HomeComponent implements OnInit {
       this._Renderer2.setAttribute(element, 'disabled', 'true');
       this._CartService.addToCart(productId).subscribe({
         next: (response) => {
-          this._ToastrService.success('Product Added To Cart.', 'Success', {positionClass: 'toast-bottom-right'});
+          this._ToastrService.success('Product Added To Cart.', 'Success');
           this._Renderer2.removeAttribute(element, 'disabled');
           this._CartService.cartNumber.next(response.numOfCartItems);
         },
         error: (err) => {
-          this._ToastrService.error('has error occured.', 'Error', {positionClass: 'toast-bottom-right'});
+          this._ToastrService.error('has error occured.', 'Error');
           this._Renderer2.removeAttribute(element, 'disabled');
+        }
+      })
+    }
+  }
+
+  getUserWishlist(){
+    this._WishlistService.getUserWishList().subscribe({
+      next: (response) => {
+        const newData = response.data.map((item:any) => item._id)
+        this.wishListIds = newData;
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    })
+  }
+
+  addToWishlist(productId:string  | undefined):void{
+    if(productId)
+    {
+      this._WishlistService.addToWishList(productId).subscribe({
+        next: (response) => {
+          this._ToastrService.success(response.message, 'Success');
+          this.wishListIds = response.data;
+          this._WishlistService.wishListNumber.next(response.data.length);
+        },
+        error: (err) => {
+          this._ToastrService.error('has error occured.', 'Error');
+        }
+      })
+    }
+  }
+
+  removeFromWishlist(productId:string  | undefined):void{
+    if(productId)
+    {
+      this._WishlistService.removeFromWishList(productId).subscribe({
+        next: (response) => {
+          this._ToastrService.success(response.message, 'Success');
+          this.wishListIds = response.data;
+          this._WishlistService.wishListNumber.next(response.data.length);
+        },
+        error: (err) => {
+          this._ToastrService.error('has error occured.', 'Error');
         }
       })
     }

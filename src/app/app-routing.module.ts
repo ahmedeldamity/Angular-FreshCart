@@ -13,7 +13,8 @@ const routes: Routes = [
     {path:'payment/:id', loadComponent:() => import('./components/payment/payment.component').then((M) => M.PaymentComponent), title: 'Payment'},
     {path:'allorders', loadComponent:() => import('./components/orders/orders.component').then((M) => M.OrdersComponent), title: 'All Orders'},
     {path:'forgetpassword', loadComponent:() => import('./components/forgetpassword/forgetpassword.component').then((M) => M.ForgetpasswordComponent), title: 'Forget Password'},
-    {path:'productdetails/:id', loadComponent:() => import('./components/details/details.component').then((M) => M.DetailsComponent), title: 'Product Details'}
+    {path:'productdetails/:id', loadComponent:() => import('./components/details/details.component').then((M) => M.DetailsComponent), title: 'Product Details'},
+    {path:'wishlist', loadComponent:() => import('./components/wishlist/wishlist.component').then((M) => M.WishlistComponent), title: 'Wish List'},
   ]},
   {path:'', loadComponent:() => import('./layouts/layout-auth/layout-auth.component').then((M) => M.LayoutAuthComponent), children: [
     {path:'', redirectTo: 'login', pathMatch:'full'},
